@@ -1046,3 +1046,9 @@ html.drawer-lock, html.drawer-lock body { overflow: hidden; }
 body[data-page="index"] .site-header:not(.is-scrolled):not(.drawer-open) .theme-toggle { color: var(--white); border-color: rgba(255, 255, 255, .3); }
 .drawer__head-actions { display: flex; align-items: center; gap: .5rem; }
 .drawer__head-actions .theme-toggle { width: 40px; height: 40px; }
+
+/* Smaller floating WhatsApp on phones so it doesn't cover content */
+@media (max-width: 640px) {
+  .wa-float { width: 50px; height: 50px; right: 12px; bottom: 12px; }
+  .wa-float svg { width: 25px; height: 25px; }
+}
