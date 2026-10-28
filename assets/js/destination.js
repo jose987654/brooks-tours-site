@@ -116,11 +116,16 @@
 
   /* ---------- parks ---------- */
   html += '<section class="section section--sand" id="d-parks"><div class="container">' +
-    '<header class="section-head section-head--split"><span class="eyebrow">Parks &amp; highlights</span><h2>Where to go in ' + esc(d.name) + "</h2>" +
+    '<header class="section-head section-head--split"><div><span class="eyebrow">Parks &amp; highlights</span><h2>Where to go in ' + esc(d.name) + "</h2></div>" +
     '<p class="lead">The places our guides return to again and again — each one with its own season, wildlife and character.</p></header>' +
     '<div class="d-parks">' +
     parks.map(function (p, i) {
-      return '<article class="park-card' + (i === 0 ? " park-card--lead" : "") + '">' +
+      var n = parks.length, rem = (n + 3) % 3, last = i === n - 1 && i > 0;
+      var cls = i === 0 ? " park-card--lead" : "";
+      if (last && rem === 2) cls += " park-card--fill2";
+      if (last && rem === 1) cls += " park-card--fill3";
+      if (last && n % 2 === 1) cls += " park-card--wide-md";
+      return '<article class="park-card' + cls + '">' +
         '<div class="park-card__media"><img src="' + img(p.image, i === 0 ? "lg" : "sm") + '" alt="' + esc(p.name + ", " + d.name) + '" width="' + (i === 0 ? 1800 : 720) + '" height="' + (i === 0 ? 1200 : 480) + '" loading="lazy"' + (p.pos ? ' style="object-position:' + esc(p.pos) + '"' : "") + ">" +
         '<span class="badge badge--light">' + esc(p.tag) + "</span></div>" +
         '<div class="park-card__body"><span class="park-card__num">' + (i < 9 ? "0" : "") + (i + 1) + "</span><h3>" + esc(p.name) + "</h3><p>" + esc(p.text) + "</p></div></article>";
@@ -159,7 +164,7 @@
     return sa - sb || (a.priceFrom || 0) - (b.priceFrom || 0);
   }).slice(0, 6);
   html += '<section class="section section--sand" id="d-tours"><div class="container">' +
-    '<header class="section-head section-head--split"><span class="eyebrow">Safaris in ' + esc(d.name) + "</span><h2>Trips that include " + esc(d.name) + "</h2>" +
+    '<header class="section-head section-head--split"><div><span class="eyebrow">Safaris in ' + esc(d.name) + "</span><h2>Trips that include " + esc(d.name) + "</h2></div>" +
     '<a class="link-arrow" href="' + countryLink + '">See all ' + esc(d.name) + " safaris →</a></header>";
   if (related.length) {
     html += '<div class="grid grid-3">' + related.map(function (t) {
@@ -181,7 +186,7 @@
   /* ---------- other destinations ---------- */
   var others = ORDER.filter(function (k) { return k !== d.slug && DATA[k]; });
   html += '<section class="section" id="d-more"><div class="container">' +
-    '<header class="section-head section-head--split"><span class="eyebrow">Keep exploring</span><h2>Other destinations</h2>' +
+    '<header class="section-head section-head--split"><div><span class="eyebrow">Keep exploring</span><h2>Other destinations</h2></div>' +
     '<a class="link-arrow" href="destinations.html">All destinations →</a></header>' +
     '<div class="d-others">' + others.map(function (k) {
       var o = DATA[k];

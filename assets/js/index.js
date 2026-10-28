@@ -29,7 +29,20 @@
         }, 400);
       }
     };
-    var start = function () { if (!timer && !reduce) timer = setInterval(function () { show(current + 1); }, DURATION); };
+    // Later slides load only after the page has finished loading, so the first photo gets the full connection.
+    // A slide is skipped until its photo has arrived, so the crossfade never fades to a blank frame.
+    var ready = function (s) { var img = s.querySelector("img"); return img && img.getAttribute("src") && img.complete && img.naturalWidth > 0; };
+    var loadRest = function () {
+      hero.querySelectorAll("img[data-src]").forEach(function (img) { img.src = img.getAttribute("data-src"); img.removeAttribute("data-src"); });
+    };
+    if (document.readyState === "complete") setTimeout(loadRest, 300); else window.addEventListener("load", function () { setTimeout(loadRest, 300); });
+    var next = function () {
+      for (var k = 1; k < slides.length; k++) {
+        var i = (current + k) % slides.length;
+        if (ready(slides[i])) { show(i); return; }
+      }
+    };
+    var start = function () { if (!timer && !reduce) timer = setInterval(next, DURATION); };
     var stop = function () { clearInterval(timer); timer = null; };
 
     if (slides.length > 1 && !reduce) {

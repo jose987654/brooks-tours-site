@@ -1,15 +1,19 @@
 /* gallery.html — owned by destinations agent */
 
-.gallery-head { gap: 1.5rem; }
+.gallery-head { gap: 1.5rem; max-width: none; }
 .gallery-head__text { display: flex; flex-direction: column; gap: 1rem; }
 .gallery-head__text > * { margin: 0; }
-@media (min-width: 900px) { .gallery-head { align-items: flex-end; } .gallery-filters { justify-content: flex-end; max-width: 620px; } }
+
 .gallery-count { font-size: .75rem; font-weight: 600; opacity: .55; margin-left: .1rem; }
 .chip.is-active .gallery-count { opacity: .75; }
 
 /* ---------- masonry (CSS columns) ---------- */
-.masonry { columns: 1; column-gap: clamp(.9rem, .6rem + 1vw, 1.5rem); }
-@media (min-width: 560px) { .masonry { columns: 2; } }
+.masonry { columns: 2; column-gap: clamp(.6rem, .4rem + 1vw, 1.5rem); }
+@media (max-width: 559px) {
+  .masonry__item { margin-bottom: .6rem; }
+  .masonry__cap { display: none; } /* captions + credits live in the lightbox on phones */
+  .gallery-item__zoom { display: none; }
+}
 @media (min-width: 900px) { .masonry { columns: 3; } }
 @media (min-width: 1280px) { .masonry { columns: 4; } }
 .masonry.is-filtering .masonry__item { animation: mz-in .6s var(--ease-out) both; }
