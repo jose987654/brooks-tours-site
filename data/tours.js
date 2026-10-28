@@ -23,7 +23,7 @@ window.BROOKS_TOURS = [
       "Private 4x4 Land Cruiser with pop-up roof and English-speaking driver-guide throughout"
     ],
     bestMonths: "Jun–Sep and Dec–Feb (drier trails); possible all year",
-    months: [1, 2, 6, 7, 8, 9, 12],
+    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     groupSize: "Private, 2–8",
     itinerary: [
       { day: "1", title: "Kigali to Rushaga, Bwindi", text: "Your guide meets you at Kigali International Airport. Drive north through terraced Rwandan hills to the Cyanika border, then on past the Virunga volcanoes and Lake Mutanda to Rushaga in southern Bwindi. Afternoon at leisure with a sundowner overlooking the forest.", overnight: "Rushaga Gorilla Camp", meals: "L/D" },
@@ -56,7 +56,7 @@ window.BROOKS_TOURS = [
       "Canoe on Lake Bunyonyi and unwind before flying home"
     ],
     bestMonths: "Jun–Sep and Dec–Feb; green season Mar–May brings lower prices",
-    months: [1, 2, 6, 7, 8, 9, 12],
+    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     groupSize: "Private, 2–8",
     itinerary: [
       { day: "1", title: "Arrive Entebbe", text: "Met on arrival at Entebbe International Airport and transferred to your lakeside hotel. If time allows, stroll the Entebbe Botanical Gardens before dinner.", overnight: "Protea Hotel Entebbe", meals: "D" },
@@ -97,7 +97,7 @@ window.BROOKS_TOURS = [
       "Kazinga Channel cruise in Queen Elizabeth National Park"
     ],
     bestMonths: "Dec–Feb and Jun–Sep for game viewing; all year for gorillas",
-    months: [1, 2, 6, 7, 8, 9, 12],
+    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     groupSize: "Private, 2–8",
     itinerary: [
       { day: "1", title: "Kampala to Ziwa and Murchison", text: "Early pickup and drive north to Ziwa Rhino Sanctuary for a guided rhino walk, then continue to Murchison Falls National Park.", overnight: "Paraa Safari Lodge", meals: "L/D" },
@@ -133,8 +133,8 @@ window.BROOKS_TOURS = [
       "Luxury lodges with private bandas, guiding and laundry included",
       "Ideal for travellers short on time or who prefer not to drive"
     ],
-    bestMonths: "Jun–Sep and Dec–Feb",
-    months: [1, 2, 6, 7, 8, 9, 12],
+    bestMonths: "Jun–Sep and Dec–Feb (drier); treks run all year",
+    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     groupSize: "Private, 2–8",
     itinerary: [
       { day: "1", title: "Arrive Entebbe", text: "Private transfer to a garden hotel on the shores of Lake Victoria for a restful first night.", overnight: "The Boma Entebbe", meals: "D" },
@@ -168,8 +168,8 @@ window.BROOKS_TOURS = [
       "Smooth tarmac road the whole way — perfect for a short break",
       "Stay at Five Volcanoes Boutique Hotel, minutes from the park HQ at Kinigi"
     ],
-    bestMonths: "Jun–Sep and Dec–Feb",
-    months: [1, 2, 6, 7, 8, 9, 12],
+    bestMonths: "Jun–Sep and Dec–Feb (drier); treks run all year",
+    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     groupSize: "Private, 2–8",
     itinerary: [
       { day: "1", title: "Kigali city and drive to Musanze", text: "Morning arrival and guided Kigali tour: the Genocide Memorial, Kimironko market and the Inema Arts Centre. Afternoon drive north to Musanze with views of the Virunga chain.", overnight: "Five Volcanoes Boutique Hotel", meals: "L/D" },
@@ -358,8 +358,8 @@ window.BROOKS_TOURS = [
       "Gorilla trek in Bwindi's Rushaga sector (Uganda permit $800 included)",
       "Lake Bunyonyi island canoe trip"
     ],
-    bestMonths: "Jun–Sep and Dec–Feb",
-    months: [1, 2, 6, 7, 8, 9, 12],
+    bestMonths: "Jun–Sep and Dec–Feb (drier); treks run all year",
+    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     groupSize: "Private, 2–8",
     itinerary: [
       { day: "1", title: "Arrive Kigali", text: "Welcome to Rwanda. Afternoon Kigali tour and a visit to the Genocide Memorial.", overnight: "Heaven Boutique Hotel", meals: "D" },
@@ -480,3 +480,13 @@ window.brooksTourCard = function (t) {
     '<h3><a href="' + href + '">' + esc(t.title) + '</a></h3><p>' + esc(t.summary) + '</p>' +
     '<div class="tour-card__foot"><span class="price">' + price + '</span><a class="link-arrow" href="' + href + '">View trip →</a></div></div></article>';
 };
+
+/* Inline --hero:url('assets/img/..') is resolved relative to style.css when used inside .page-hero::after,
+   so rewrite it to an absolute URL (works on file:// and GitHub Pages). */
+window.brooksFixHeroes = function (root) {
+  (root || document).querySelectorAll('[style*="--hero"]').forEach(function (el) {
+    var m = /url\(['"]?([^'")]+)['"]?\)/.exec(el.style.getPropertyValue("--hero"));
+    if (m && !/^(https?:|file:|data:)/.test(m[1])) el.style.setProperty("--hero", 'url("' + new URL(m[1], document.baseURI).href + '")');
+  });
+};
+window.brooksFixHeroes();

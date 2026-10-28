@@ -1,7 +1,7 @@
 /* tour.html — single safari */
 
 /* ---------- Hero ---------- */
-.tour-hero { min-height: max(540px, 76vh); min-height: max(540px, 76svh); }
+.tour-hero { min-height: clamp(540px, 76vh, 860px); min-height: clamp(540px, 76svh, 860px); }
 .tour-hero h1 { max-width: 20ch; }
 .tour-hero .lead { max-width: 58ch; }
 .tour-pills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .4rem !important; }
@@ -17,7 +17,7 @@
 
 /* ---------- Sticky sub-nav ---------- */
 .tour-subnav {
-  position: sticky; top: var(--header-h); z-index: 60;
+  position: sticky; top: var(--stick-top, calc(var(--header-h) + var(--utility-h))); z-index: 60;
   background: rgba(255, 255, 255, .96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line); transition: box-shadow var(--t);
 }
@@ -45,7 +45,7 @@
 /* ---------- Layout ---------- */
 .tour-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 clamp(2.5rem, 1rem + 4vw, 5rem); padding-bottom: clamp(3rem, 2rem + 4vw, 6rem); }
 .tour-main { min-width: 0; }
-.tour-section { padding-block: clamp(2.75rem, 2rem + 3vw, 4.5rem); scroll-margin-top: calc(var(--header-h) + 70px); }
+.tour-section { padding-block: clamp(2.75rem, 2rem + 3vw, 4.5rem); scroll-margin-top: calc(var(--stick-top, calc(var(--header-h) + var(--utility-h))) + 70px); }
 .tour-section + .tour-section { border-top: 1px solid var(--line); }
 .tour-section > .eyebrow { margin-bottom: .9rem; }
 .tour-section h2 { font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem); }
@@ -161,7 +161,7 @@
 }
 
 /* ---------- Booking card ---------- */
-.tour-aside { min-width: 0; scroll-margin-top: calc(var(--header-h) + 70px); padding-bottom: 1rem; }
+.tour-aside { min-width: 0; scroll-margin-top: calc(var(--stick-top, calc(var(--header-h) + var(--utility-h))) + 70px); padding-bottom: 1rem; }
 .booking-card {
   background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); padding: clamp(1.4rem, 1rem + 1.5vw, 2rem); position: relative; overflow: hidden;
@@ -190,7 +190,7 @@
 @media (min-width: 1024px) {
   .tour-layout { grid-template-columns: minmax(0, 1fr) 380px; }
   .tour-aside { padding-top: clamp(2.75rem, 2rem + 3vw, 4.5rem); }
-  .booking-card { position: sticky; top: calc(var(--header-h) + 76px); }
+  .booking-card { position: sticky; top: calc(var(--stick-top, calc(var(--header-h) + var(--utility-h))) + 78px); }
   .booking-form__row { grid-template-columns: minmax(0, 1fr) 96px; }
 }
 @media (max-width: 1023px) {
@@ -217,8 +217,8 @@
   .tour-mbar__price strong { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--green-900); }
   .tour-mbar .btn { min-width: 132px; }
   .wa-float, .to-top { transition: transform var(--t), bottom .45s var(--ease-out), opacity var(--t), visibility 0s; }
-  body.has-tour-mbar .wa-float { bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 74px); }
-  body.has-tour-mbar .to-top { bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 146px); }
+  body.has-tour-mbar .wa-float { bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 82px); }
+  body.has-tour-mbar .to-top { bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 154px); }
 }
 
 /* ---------- Lightbox ---------- */

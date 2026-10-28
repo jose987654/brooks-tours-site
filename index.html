@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>/* url() inside custom properties resolves against the stylesheet that uses it, so these live inline to resolve against the page */
+.page-hero::after{background-image:var(--hero)}
+.mega__aside{background-image:var(--bg)}
+.cta-band--image{background-image:linear-gradient(90deg,rgba(4,21,14,.92) 0%,rgba(8,51,28,.7) 55%,rgba(8,51,28,.35) 100%),var(--bg)}
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" sizes="180x180">
@@ -219,9 +225,10 @@
 
     <div class="container home-hero__inner">
       <div class="home-hero__copy">
+        <img class="home-hero__logo" src="assets/img/logo-light.svg" alt="Brooks Tours & Travels" width="340" height="87">
         <span class="eyebrow">East Africa · Private Safaris Since 2012</span>
         <h1 class="home-hero__title">Wild East Africa, <em>Thoughtfully Yours.</em></h1>
-        <p class="home-hero__lead">Gorillas in the mist of Bwindi, lions on the Mara, dawn over the Serengeti. Private, tailor-made journeys through Uganda, Rwanda, Kenya and Tanzania, planned by people who live here.</p>
+        <p class="home-hero__lead"><span class="home-hero__lead-x">Gorillas in the mist of Bwindi, lions on the Mara, dawn over the Serengeti. </span>Private, tailor-made journeys through Uganda, Rwanda, Kenya and Tanzania, planned by people who live here.</p>
         <div class="home-hero__ctas">
           <a class="btn btn-primary btn-lg" href="enquire.html">Plan My Trip <span class="arr">→</span></a>
           <a class="btn btn-ghost-light btn-lg" href="tours.html">Explore Safaris</a>
@@ -236,7 +243,7 @@
         <div class="finder__field">
           <label for="f-country">Destination</label>
           <select id="f-country" name="country">
-            <option value="">Anywhere in East Africa</option>
+            <option value="">All of East Africa</option>
             <option value="uganda">Uganda</option>
             <option value="rwanda">Rwanda</option>
             <option value="kenya">Kenya</option>
@@ -356,7 +363,7 @@
             <span class="dest-card__count">7 safaris</span>
             <h3>Uganda</h3>
             <p>The Pearl of Africa: gorillas, chimps and the mighty Nile.</p>
-            <span class="dest-card__from">From <strong>$1,650</strong> pp <span class="arr">→</span></span>
+            <span class="dest-card__from"><span>From <strong>$1,650</strong> pp</span><span class="arr">→</span></span>
           </div>
         </a>
         <a class="dest-card" href="destination.html?d=rwanda" data-reveal="zoom">
@@ -365,7 +372,7 @@
             <span class="dest-card__count">2 safaris</span>
             <h3>Rwanda</h3>
             <p>Volcanoes, golden monkeys and Lake Kivu in a compact land.</p>
-            <span class="dest-card__from">From <strong>$3,450</strong> pp <span class="arr">→</span></span>
+            <span class="dest-card__from"><span>From <strong>$3,450</strong> pp</span><span class="arr">→</span></span>
           </div>
         </a>
         <a class="dest-card" href="destination.html?d=kenya" data-reveal="zoom">
@@ -374,7 +381,7 @@
             <span class="dest-card__count">3 safaris</span>
             <h3>Kenya</h3>
             <p>Big cats of the Mara and elephants beneath Kilimanjaro.</p>
-            <span class="dest-card__from">From <strong>$3,280</strong> pp <span class="arr">→</span></span>
+            <span class="dest-card__from"><span>From <strong>$3,280</strong> pp</span><span class="arr">→</span></span>
           </div>
         </a>
         <a class="dest-card" href="destination.html?d=tanzania" data-reveal="zoom">
@@ -383,7 +390,7 @@
             <span class="dest-card__count">3 safaris</span>
             <h3>Tanzania</h3>
             <p>Serengeti plains, Ngorongoro Crater and Zanzibar's shores.</p>
-            <span class="dest-card__from">From <strong>$3,980</strong> pp <span class="arr">→</span></span>
+            <span class="dest-card__from"><span>From <strong>$3,980</strong> pp</span><span class="arr">→</span></span>
           </div>
         </a>
       </div>

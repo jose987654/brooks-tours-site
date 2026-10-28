@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>/* url() inside custom properties resolves against the stylesheet that uses it, so these live inline to resolve against the page */
+.page-hero::after{background-image:var(--hero)}
+.mega__aside{background-image:var(--bg)}
+.cta-band--image{background-image:linear-gradient(90deg,rgba(4,21,14,.92) 0%,rgba(8,51,28,.7) 55%,rgba(8,51,28,.35) 100%),var(--bg)}
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" sizes="180x180">
@@ -470,7 +476,7 @@
     <div class="stack" data-reveal="left">
       <span class="eyebrow">Request a quote</span>
       <h2>Tell us what you need</h2>
-      <p class="lead">Send the basics and a planner will reply on WhatsApp, usually within a few hours during office hours (Mon–Fri 8:30–17:30, Sat 9:00–13:00).</p>
+      <p class="lead">Send the basics and a planner will reply on WhatsApp, usually within a few hours during office hours (Mon–Fri 8:00–18:00, Sat 9:00–14:00 EAT).</p>
       <ul class="svc-contact">
         <li><span>Call us</span><a data-phone></a></li>
         <li><span>Email</span><a href="mailto:hello@brookstours.co.ug">hello@brookstours.co.ug</a></li>

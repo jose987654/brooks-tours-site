@@ -1,7 +1,7 @@
 /* Plan Your Safari — travel guide page (also provides .toc used by legal.css) */
 
 /* ---------- Layout with side TOC ---------- */
-.plan-wrap { padding-top: clamp(2rem, 1.5rem + 3vw, 4.5rem); }
+.plan-wrap { padding-top: clamp(2rem, 1.5rem + 3vw, 4.5rem); padding-bottom: 0; }
 .plan-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
 .plan-body { min-width: 0; }
 
@@ -20,7 +20,7 @@
     border-bottom: 1px solid var(--line);
   }
   .toc__title, .toc__help { display: none; }
-  .toc__list {
+  .toc .toc__list {
     display: flex; gap: .5rem; overflow-x: auto; overscroll-behavior-x: contain;
     padding-inline: var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch;
     scroll-padding-inline: var(--gutter);
@@ -76,7 +76,7 @@
 .season-card p:last-child { color: var(--ink); font-size: .9375rem; }
 
 .months-scroll {
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch;
   border: 1px solid var(--line); border-radius: var(--radius); background: var(--white);
   box-shadow: var(--shadow-sm);
 }
@@ -89,7 +89,8 @@
   text-align: left; padding-left: 1rem; padding-right: .75rem; min-width: 96px;
 }
 .months th[scope="row"] { font-family: var(--font-serif); font-size: .975rem; font-weight: 600; color: var(--green-900); box-shadow: 1px 0 0 var(--line); }
-.m span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.m { position: relative; }
+.m span { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .m::before, .m-dot { content: ""; display: block; height: 28px; border-radius: 6px; background: var(--c); }
 .m--best { --c: var(--green-700); }
 .m--good { --c: var(--gold-400); }

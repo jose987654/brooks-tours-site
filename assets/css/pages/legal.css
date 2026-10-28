@@ -19,7 +19,7 @@
     border-bottom: 1px solid var(--line);
   }
   .toc__title, .toc__help { display: none; }
-  .toc__list {
+  .toc .toc__list {
     display: flex; gap: .5rem; overflow-x: auto; overscroll-behavior-x: contain;
     padding-inline: var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch;
     scroll-padding-inline: var(--gutter);

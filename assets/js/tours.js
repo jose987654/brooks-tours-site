@@ -133,7 +133,7 @@
     ["country", "experience", "duration", "style"].forEach(function (k) { if (state[k].length) p.set(k, state[k].join(",")); });
     if (state.month) p.set("month", state.month);
     if (state.sort !== "recommended") p.set("sort", state.sort);
-    var qs = p.toString();
+    var qs = p.toString().replace(/%2C/g, ",");
     try { history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "")); } catch (e) { /* file:// in some browsers */ }
   }
 

@@ -3,13 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Passport &amp; Visa Assistance | Brooks Tours & Travels</title>
+<title>Passport & Visa Assistance | Brooks Tours & Travels</title>
 <meta name="description" content="Passport and visa assistance in Kampala: Uganda e-passport applications and renewals, Schengen, UK, USA, Canada, Dubai, China and more. Country guides, a document checklist generator and online application.">
 <!-- @head -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>/* url() inside custom properties resolves against the stylesheet that uses it, so these live inline to resolve against the page */
+.page-hero::after{background-image:var(--hero)}
+.mega__aside{background-image:var(--bg)}
+.cta-band--image{background-image:linear-gradient(90deg,rgba(4,21,14,.92) 0%,rgba(8,51,28,.7) 55%,rgba(8,51,28,.35) 100%),var(--bg)}
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" sizes="180x180">
@@ -328,8 +334,8 @@
       <dl>
         <div><dt>Ordinary e-passport, 48 pages</dt><dd>UGX 250,000</dd></div>
         <div><dt>Ordinary e-passport, 64 pages</dt><dd>UGX 400,000</dd></div>
-        <div><dt>Replacement of lost passport</dt><dd>Standard fee + replacement charge</dd></div>
-        <div><dt>Standard processing</dt><dd>About 10 working days after capture</dd></div>
+        <div><dt>Replacement of lost passport</dt><dd>Fee + replacement charge</dd></div>
+        <div><dt>Standard processing</dt><dd>About 10 working days</dd></div>
         <div class="visa-fees__ours"><dt>Brooks service fee</dt><dd>From UGX 100,000</dd></div>
       </dl>
       <p class="small muted">Government fees are approximate and subject to change by the Government of Uganda. Paid directly to the bank via your PRN; we never mark them up.</p>
@@ -353,7 +359,7 @@
       <label class="visa-search">
         <span class="sr-only">Search destinations</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" id="visa-q" placeholder="Search a country, e.g. Germany, Dubai, Canada" autocomplete="off">
+        <input type="search" id="visa-q" placeholder="Search a country, e.g. Germany or Dubai" autocomplete="off">
       </label>
       <div class="chip-row" id="visa-regions" role="group" aria-label="Filter by region">
         <button class="chip" type="button" data-region="all" aria-pressed="true">All</button>

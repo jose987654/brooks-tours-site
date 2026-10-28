@@ -212,7 +212,7 @@
 
     backBtn.hidden = n === 1;
     if (n === TOTAL) nextBtn.innerHTML = 'Review my trip <span class="arr">→</span>';
-    else if (n > TOTAL) nextBtn.innerHTML = 'Send via WhatsApp <span class="arr">→</span>';
+    else if (n > TOTAL) nextBtn.innerHTML = '<span>Send<span class="hide-xs"> via WhatsApp</span></span> <span class="arr">→</span>';
     else nextBtn.innerHTML = 'Next <span class="arr">→</span>';
     nextBtn.classList.toggle('btn-whatsapp', n > TOTAL);
     nextBtn.classList.toggle('btn-primary', n <= TOTAL);

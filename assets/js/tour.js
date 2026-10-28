@@ -61,7 +61,7 @@
   if (md) md.setAttribute("content", tour.summary);
 
   /* ---------- hero ---------- */
-  document.getElementById("tour-hero").style.setProperty("--hero", "url('assets/img/" + tour.image + ".webp')");
+  document.getElementById("tour-hero").style.setProperty("--hero", 'url("' + new URL("assets/img/" + tour.image + ".webp", document.baseURI).href + '")');
   text("title", tour.title);
   text("eyebrow", tour.days + "-day private safari · " + countryText);
   text("summary", tour.summary);
@@ -203,13 +203,14 @@
   var hero = document.getElementById("tour-hero");
   var enquire = document.getElementById("enquire");
   var ticking = false;
+  var siteHeader = document.querySelector(".site-header");
   function onScroll() {
     ticking = false;
-    var offset = subnav.getBoundingClientRect().bottom + 40;
+    if (siteHeader) document.documentElement.style.setProperty("--stick-top", Math.max(0, Math.round(siteHeader.getBoundingClientRect().bottom)) + "px");
+    var offset = subnav.getBoundingClientRect().bottom + 140;
     var active = 0;
-    sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= offset) active = i; });
-    // On desktop the enquiry card sits beside the content, so don't let it steal the highlight
-    if (window.innerWidth >= 1024 && active === sections.length - 1) active = sections.length - 2;
+    var desk = window.innerWidth >= 1024; // enquiry card sits beside the content on desktop
+    sections.forEach(function (s, i) { if (s && !(desk && i === sections.length - 1) && s.getBoundingClientRect().top <= offset) active = i; });
     if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 4 && window.innerWidth < 1024) active = sections.length - 1;
     links.forEach(function (a, i) {
       var on = i === active;

@@ -362,3 +362,12 @@
   .duration { padding: 18px 16px 14px; }
   .reassure { padding: 24px 18px; }
 }
+@media (max-width: 720px) {
+  .planner__nav [data-next] { flex: 1 1 auto; justify-content: center; min-width: 0; white-space: nowrap; }
+  .planner__nav [data-back] { flex: 0 0 auto; padding-left: 18px; padding-right: 18px; }
+}
+@media (max-width: 400px) {
+  .planner__nav [data-next] { padding-left: 14px; padding-right: 14px; }
+}
+@media (max-width: 360px) { .hide-xs { display: none; } }
+.is-sent .planner__steps button:disabled { opacity: 1; }

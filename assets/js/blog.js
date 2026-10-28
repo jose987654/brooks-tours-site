@@ -51,9 +51,12 @@
 
   var grid = document.querySelector('[data-grid]');
   var empty = document.querySelector('[data-empty]');
+  var nl = document.querySelector('[data-newsletter]');
   function render(cat) {
     var list = cat === 'All' ? posts.slice(1) : posts.filter(function (p) { return p.category === cat; });
+    if (nl && nl.parentNode === grid) grid.removeChild(nl);
     grid.innerHTML = list.map(card).join('');
+    if (nl) grid.appendChild(nl); // newsletter tile always closes the grid
     empty.hidden = list.length > 0;
   }
   chipsEl.addEventListener('click', function (e) {

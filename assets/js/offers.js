@@ -33,7 +33,7 @@
         (daysLeft <= 75 ? '<span class="badge offer-card__soon">Ends soon</span>' : '') +
       '</a>' +
       '<div class="offer-card__body">' +
-        '<div class="tour-card__meta"><span>' + t.days + ' Days</span><span>' + esc(countries) + '</span><span>' + esc(t.style) + '</span></div>' +
+        '<div class="tour-card__meta"><span>' + t.days + ' Days</span><span>' + esc(countries) + '</span></div>' +
         '<h3><a href="' + href + '">' + esc(t.title) + '</a></h3>' +
         '<p class="offer-card__note">' + esc(t.offerNote || "") + '</p>' +
         '<p class="offer-card__summary">' + esc(t.summary) + '</p>' +

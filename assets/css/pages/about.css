@@ -159,3 +159,7 @@
 }
 @media (max-width: 1024px) { .licences { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .licences { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .partners__list { gap: 8px; }
+  .partners__list li { padding: 7px 14px; font-size: .86rem; }
+}
