@@ -15,7 +15,7 @@
 
 .dest-card {
   display: flex; flex-direction: column; min-width: 0;
-  background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--surface); border-radius: var(--radius-lg); overflow: hidden;
   box-shadow: var(--shadow-sm); border: 1px solid var(--line);
   transition: box-shadow .5s var(--ease-out), transform .5s var(--ease-out);
 }
@@ -33,18 +33,18 @@
 .dest-card__body > * { margin: 0; }
 .dest-card h3 { font-size: clamp(1.85rem, 1.5rem + 1.5vw, 2.6rem); letter-spacing: -.02em; line-height: 1.05; }
 .dest-card h3 a { text-decoration: none; }
-.dest-card h3 a:hover { color: var(--green-700); }
+.dest-card h3 a:hover { color: var(--accent); }
 .dest-card__body > p { color: var(--muted); line-height: 1.65; }
 .dest-card__tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 .dest-card__tags li {
   font-size: .78rem; font-weight: 500; padding: .3rem .7rem; border-radius: 999px;
-  background: var(--green-50); color: var(--green-800); border: 1px solid var(--green-100);
+  background: var(--green-50); color: var(--accent); border: 1px solid var(--green-100);
 }
 .dest-card__foot {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1rem;
   margin-top: auto !important; padding-top: 1.1rem; border-top: 1px solid var(--line);
 }
-.dest-card__fact { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-600); }
+.dest-card__fact { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-text); }
 
 @media (min-width: 760px) {
   .dest-card--feature { grid-column: 1 / -1; }
@@ -121,7 +121,7 @@
 
 /* ---------- Combine countries ---------- */
 .combo-card {
-  display: flex; flex-direction: column; min-width: 0; background: var(--white);
+  display: flex; flex-direction: column; min-width: 0; background: var(--surface);
   border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-sm);
   transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out);
 }
@@ -133,11 +133,11 @@
 .combo-card__body > * { margin: 0; }
 .combo-card__route {
   display: inline-flex; align-items: center; gap: .5rem; align-self: flex-start;
-  font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-600);
+  font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-text);
 }
 .combo-card__route::before { content: ""; width: 18px; height: 1px; background: currentColor; }
 .combo-card h3 a { text-decoration: none; }
-.combo-card h3 a:hover { color: var(--green-700); }
+.combo-card h3 a:hover { color: var(--accent); }
 .combo-card__body > p { color: var(--muted); font-size: .9375rem; line-height: 1.6; }
 .combo-card__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-top: auto !important; padding-top: 1rem; border-top: 1px solid var(--line); }
 .combo-more { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); text-align: center; }
