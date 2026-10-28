@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+  <path id="bt" d="M10.8 25.4c2.6-2.6 7.6-4.3 12.6-4.7 2.2-1.6 5.6-2.3 8.6-2 3.4-.4 6.9.3 9.1 1.9 5 .3 9.7 2 12.1 4.6-2.1 1.5-5.6 2.2-9.3 2.1-1.9.9-4.6 1.2-7 .9l-.1.1c-2.6.8-6.8.8-9.6.1-2.3.6-5.5.6-7.9 0-3.2.2-6.7-.6-8.5-3zM30.5 44.6l.45-11.2-6.6-6h2.3l4.4 3.6.3-3.9h1.7l-.2 4.4 5.1-4.1h2.3l-6.9 6.6.55 10.6z"/>
+  <mask id="bm" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+    <rect width="64" height="64" fill="#fff"/>
+    <use href="#bt" fill="#000" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/>
+  </mask>
+  <clipPath id="bc"><rect width="64" height="44.6"/></clipPath>
+</defs>
+<circle cx="32" cy="32" r="30.2" fill="none" stroke="#b88e2e" stroke-width="1.6"/>
+<circle cx="32" cy="32" r="27.3" fill="none" stroke="#c9a84c" stroke-width=".55" opacity=".75"/>
+<g mask="url(#bm)">
+  <circle cx="32" cy="40" r="17.5" fill="#c9a84c" clip-path="url(#bc)"/>
+  <path d="M5.5 44.6h53" stroke="#b88e2e" stroke-width="1.6" stroke-linecap="round"/>
+</g>
+<use href="#bt" fill="#b88e2e"/>
+<path d="M14.5 49.4h35M20.5 53.6h23M26.5 57.6h11" stroke="#b88e2e" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

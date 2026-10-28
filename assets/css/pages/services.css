@@ -1,0 +1,115 @@
+/* services.html — Travel Services */
+
+/* Intro */
+.svc-intro { display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.svc-intro .section-head { margin-bottom: 0; }
+.svc-intro__copy { display: flex; flex-direction: column; gap: 1rem; }
+.svc-intro__copy > * { margin: 0; }
+@media (min-width: 960px) {
+  .svc-intro { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: end; }
+}
+
+/* Service tiles */
+.svc-tiles { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 600px) { .svc-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; } }
+@media (min-width: 1024px) { .svc-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; } }
+.svc-tile {
+  position: relative; display: flex; flex-direction: column; gap: .75rem; height: 100%;
+  padding: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); text-decoration: none; color: var(--ink); overflow: hidden;
+  transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out), border-color var(--t);
+}
+.svc-tile::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+  transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out);
+}
+.svc-tile:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.svc-tile:hover::before { transform: scaleX(1); }
+.svc-tile > * { margin: 0; }
+.svc-tile h3 { font-size: 1.3rem; margin-top: .35rem; }
+.svc-tile p { color: var(--muted); font-size: .9375rem; flex: 1; }
+.svc-tile .icon-badge { transition: background-color var(--t), color var(--t); }
+.svc-tile:hover .icon-badge { background: var(--green-900); color: var(--gold-400); }
+.svc-tile .link-arrow { align-self: flex-start; }
+
+/* Detail blocks */
+.svc-block { scroll-margin-top: calc(var(--header-h) + var(--utility-h)); }
+.svc-block .stack > .eyebrow { margin-bottom: -.25rem; }
+.svc-block .icon-list { margin-top: .25rem; }
+.svc-media { margin: 0; }
+.svc-media img { aspect-ratio: 5 / 4; }
+@media (max-width: 899px) { .svc-media img { aspect-ratio: 4 / 3; } }
+.svc-media__tag {
+  position: absolute; left: 1rem; bottom: 1rem; z-index: 1;
+  display: flex; flex-direction: column; gap: .1rem;
+  padding: .8rem 1.1rem; border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .94); box-shadow: var(--shadow);
+  font-size: .8125rem; color: var(--muted); max-width: calc(100% - 2rem);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.svc-media__tag strong { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--green-900); line-height: 1.1; }
+
+/* Big link to visa.html */
+.svc-biglink {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin-top: .75rem; padding: 1.25rem 1.4rem;
+  border-radius: var(--radius); background: var(--green-900); color: var(--white); text-decoration: none;
+  box-shadow: var(--shadow); transition: transform var(--t), box-shadow var(--t), background-color var(--t);
+}
+.svc-biglink:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); background: var(--green-800); }
+.svc-biglink > span:first-child { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.svc-biglink small { font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-400); }
+.svc-biglink strong { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.55rem); line-height: 1.2; }
+.svc-biglink em { font-style: normal; font-size: .875rem; color: rgba(255, 255, 255, .72); }
+.svc-biglink__arr {
+  flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--gold-500); color: var(--green-950); font-size: 1.25rem; font-weight: 600;
+  transition: transform var(--t);
+}
+.svc-biglink:hover .svc-biglink__arr { transform: translateX(4px); }
+
+/* Info panel (passport, insurance) */
+.svc-panel {
+  position: relative; padding: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
+  border-radius: var(--radius-lg); background: var(--sand-50); border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.svc-panel::before {
+  content: ""; position: absolute; top: 0; left: clamp(1.5rem, 1.1rem + 2vw, 2.75rem); width: 56px; height: 3px;
+  background: var(--gold-500); border-radius: 0 0 3px 3px;
+}
+.svc-panel h3 { margin-bottom: 1.1rem; }
+.svc-panel__list { display: grid; gap: 0; margin: 0; }
+.svc-panel__list > div { display: grid; gap: .2rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+.svc-panel__list > div:first-child { border-top: 0; padding-top: 0; }
+.svc-panel__list dt { font-weight: 600; color: var(--green-900); font-size: .9375rem; }
+.svc-panel__list dd { margin: 0; color: var(--muted); font-size: .9375rem; }
+@media (min-width: 560px) {
+  .svc-panel__list > div { grid-template-columns: 11rem minmax(0, 1fr); gap: 1.25rem; }
+}
+
+/* Corporate */
+.svc-corp-grid { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 560px) { .svc-corp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.svc-corp-grid li {
+  display: flex; flex-direction: column; gap: .4rem; padding: 1.4rem;
+  border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .04);
+}
+.svc-corp-grid strong { font-family: var(--font-serif); font-weight: 500; font-size: 1.2rem; color: var(--white); }
+.svc-corp-grid strong::before { content: ""; display: block; width: 24px; height: 2px; background: var(--gold-400); margin-bottom: .8rem; }
+.svc-corp-grid span { font-size: .9375rem; color: rgba(255, 255, 255, .7); }
+
+/* Why */
+.svc-why .feature { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+
+/* Quote */
+.svc-quote { display: grid; gap: clamp(2rem, 1.5rem + 3vw, 4.5rem); grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 960px) { .svc-quote { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); } }
+.svc-quote .btn-whatsapp { align-self: flex-start; }
+.svc-contact { display: grid; gap: .9rem; padding: 1.25rem 0; border-block: 1px solid var(--line); }
+.svc-contact li { display: grid; gap: .1rem; font-weight: 500; }
+.svc-contact span { font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-600); }
+.svc-contact a { color: var(--green-800); text-decoration: none; overflow-wrap: anywhere; }
+.svc-contact a:hover { color: var(--gold-600); }

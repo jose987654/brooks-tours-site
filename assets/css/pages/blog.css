@@ -1,0 +1,79 @@
+/* The Brooks Journal — blog listing (post-card styles are also loaded by post.css for related posts) */
+
+.journal { padding-top: clamp(2.5rem, 2rem + 3vw, 5rem); }
+
+/* ---------- Featured ---------- */
+.featured__card {
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  border-radius: var(--radius-lg); overflow: hidden; background: var(--white);
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+@media (min-width: 900px) { .featured__card { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } }
+.featured__media { display: block; overflow: hidden; position: relative; }
+.featured__media img { width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+@media (min-width: 900px) { .featured__media img { aspect-ratio: auto; min-height: 460px; } }
+.featured__card:hover .featured__media img { transform: scale(1.04); }
+.featured__body { display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; padding: clamp(1.5rem, 1rem + 3vw, 3.5rem); justify-content: center; }
+.featured__body > * { margin: 0; }
+.featured__label { display: flex; align-items: center; gap: .85rem; font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-600); }
+.featured__body h2 { font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.6rem); }
+.featured__body h2 a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size var(--t); }
+.featured__body h2 a:hover { background-size: 100% 1px; }
+.featured__excerpt { color: var(--muted); font-size: 1.0625rem; max-width: 52ch; }
+.featured__foot { display: flex; align-items: center; gap: .85rem; padding-block: .25rem .5rem; }
+.featured__by { display: grid; line-height: 1.35; font-size: .875rem; color: var(--muted); }
+.featured__by strong { color: var(--ink); font-weight: 600; }
+.avatar {
+  flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--green-900); color: var(--gold-400);
+  font-family: var(--font-serif); font-weight: 600; font-size: 1rem; letter-spacing: .02em;
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 4px var(--gold-400);
+}
+
+/* ---------- Filter bar ---------- */
+.journal__bar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 2rem; margin: clamp(3.5rem, 2.5rem + 4vw, 6rem) 0 2rem; }
+.journal__bar > div:first-child { display: grid; gap: .6rem; }
+.journal__title { font-size: clamp(1.7rem, 1.35rem + 1.5vw, 2.4rem); }
+@media (max-width: 639px) {
+  .journal__chips { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter); scrollbar-width: none; width: calc(100% + var(--gutter) * 2); }
+  .journal__chips::-webkit-scrollbar { display: none; }
+  .journal__chips .chip { flex: none; }
+}
+.journal__empty { padding: 3rem 1rem; text-align: center; color: var(--muted); }
+
+/* ---------- Post cards ---------- */
+.post-grid { display: grid; gap: clamp(1.25rem, 1rem + 1.2vw, 2rem); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .post-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.post-card {
+  display: flex; flex-direction: column; background: var(--white); border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  transition: transform var(--t), box-shadow var(--t);
+  animation: post-in .5s var(--ease-out) both;
+}
+@keyframes post-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.post-card__media { position: relative; display: block; overflow: hidden; }
+.post-card__media img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 1s var(--ease-out); }
+.post-card:hover .post-card__media img { transform: scale(1.05); }
+.post-card__media .badge { position: absolute; left: 1rem; top: 1rem; }
+.post-card__body { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; padding: 1.4rem 1.5rem 1.6rem; flex: 1; }
+.post-card__body > * { margin: 0; }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem 1rem; font-size: .8125rem; color: var(--muted); }
+.post-meta span { display: inline-flex; align-items: center; gap: .35rem; }
+.post-meta svg { width: 15px; height: 15px; }
+.post-card h3 { font-size: clamp(1.2rem, 1.1rem + .4vw, 1.4rem); }
+.post-card h3 a { text-decoration: none; }
+.post-card h3 a:hover { color: var(--green-700); }
+.post-card__excerpt { font-size: .9375rem; color: var(--muted); }
+.post-card .link-arrow { margin-top: auto; padding-top: .4rem; }
+
+/* ---------- Newsletter ---------- */
+.newsletter { overflow: hidden; }
+.newsletter__inner { display: grid; gap: clamp(2rem, 1.5rem + 3vw, 4.5rem); align-items: center; }
+@media (min-width: 960px) { .newsletter__inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.newsletter__copy { display: grid; gap: 1.1rem; justify-items: start; }
+.newsletter__copy > * { margin: 0; }
+.newsletter__points { display: grid; gap: .6rem; margin-top: .5rem !important; }
+.newsletter__points li { position: relative; padding-left: 1.6rem; color: rgba(255, 255, 255, .82); }
+.newsletter__points li::before { content: ""; position: absolute; left: 0; top: .6em; width: 14px; height: 1px; background: var(--gold-400); }
