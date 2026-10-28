@@ -5,7 +5,7 @@
 
 .faq-tools {
   position: relative; z-index: 2; margin-top: -116px; margin-bottom: 48px;
-  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); padding: 26px 28px 20px;
 }
 .faq-search {
@@ -13,8 +13,8 @@
   border: 1.5px solid var(--line); border-radius: 999px; padding: 0 8px 0 20px; background: var(--sand-50);
   transition: border-color .2s, box-shadow .2s;
 }
-.faq-search:focus-within { border-color: var(--gold-500); box-shadow: 0 0 0 4px var(--gold-100); background: var(--white); }
-.faq-search svg { flex: 0 0 auto; color: var(--gold-600); }
+.faq-search:focus-within { border-color: var(--gold-500); box-shadow: 0 0 0 4px var(--gold-100); background: var(--surface); }
+.faq-search svg { flex: 0 0 auto; color: var(--gold-text); }
 .faq-search input {
   flex: 1; min-width: 0; height: 56px; border: 0; background: none; font: inherit; font-size: 1.05rem; color: var(--ink); outline: none; padding: 0;
 }
@@ -35,10 +35,10 @@
   font-size: clamp(1.4rem, 1.15rem + 1vw, 1.8rem);
 }
 .faq-group__title span {
-  font-family: "Inter", system-ui, sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .12em; color: var(--gold-600);
+  font-family: "Inter", system-ui, sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .12em; color: var(--gold-text);
 }
 .faq-list .acc-item[hidden] { display: none; }
-.faq-list .acc-body a { color: var(--green-700); text-decoration: underline; text-underline-offset: 3px; }
+.faq-list .acc-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
 .faq-empty { text-align: center; padding: 48px 20px; border: 1px dashed var(--line); border-radius: var(--radius-lg); }
 .faq-empty[hidden] { display: none; }
@@ -51,7 +51,7 @@
   background: var(--gold-100); border: 1px solid rgba(184,142,46,.25);
 }
 .still h2 { margin: 6px 0 8px; }
-.still p { margin: 0; color: var(--green-900); }
+.still p { margin: 0; color: var(--heading); }
 .still__actions { display: flex; flex-direction: column; gap: 10px; }
 .still__actions .btn { justify-content: center; }
 

@@ -8,7 +8,7 @@
   content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(90deg, rgba(4,21,14,.88) 0%, rgba(4,21,14,.62) 55%, rgba(4,21,14,.25) 100%);
 }
-.nf__inner { position: relative; max-width: var(--container); }
+.nf__inner { position: relative; }
 .nf__code {
   margin: 0; font-family: "Fraunces", Georgia, serif; font-weight: 700; line-height: .85;
   font-size: clamp(6rem, 3rem + 14vw, 13rem); letter-spacing: -.04em;
@@ -20,19 +20,19 @@
 
 .nf-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1040px; margin: 0 auto; }
 .nf-link {
-  display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 2px; align-items: center;
-  padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white);
+  display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 2px; align-items: start; align-content: center;
+  padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
   text-decoration: none; color: var(--ink); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .nf-link:hover, .nf-link:focus-visible { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--gold-400); }
 .nf-link svg {
-  grid-row: span 2; width: 48px; height: 48px; padding: 12px; border-radius: 50%;
-  background: var(--gold-100); color: var(--gold-600); box-sizing: border-box;
+  grid-row: span 2; align-self: center; width: 48px; height: 48px; padding: 12px; border-radius: 50%;
+  background: var(--gold-100); color: var(--gold-text); box-sizing: border-box;
 }
-.nf-link strong { font-family: "Fraunces", Georgia, serif; font-size: 1.15rem; font-weight: 600; color: var(--green-900); }
+.nf-link strong { font-family: "Fraunces", Georgia, serif; font-size: 1.15rem; font-weight: 600; color: var(--heading); }
 .nf-link span { font-size: .88rem; color: var(--muted); }
 .nf-help { text-align: center; margin: 36px 0 0; }
-.nf-help a { color: var(--green-700); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.nf-help a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 900px) { .nf-links { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) {

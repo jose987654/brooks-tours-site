@@ -9,6 +9,26 @@ window.BROOKS = {
 
 document.documentElement.classList.add('js');
 
+/* Inline --hero / --bg url() values resolve against the stylesheet that uses them,
+   so rewrite them to absolute URLs as early as possible. (partials/head.html also
+   applies them from an inline <style>, which covers the no-JS case.) */
+(function () {
+  function absolutise(root) {
+    Array.prototype.forEach.call((root || document).querySelectorAll('[style*="--hero"], [style*="--bg"]'), function (el) {
+      ['--hero', '--bg'].forEach(function (prop) {
+        var v = el.style.getPropertyValue(prop);
+        var m = v && /url\(\s*['"]?([^'")]+)['"]?\s*\)/.exec(v);
+        if (m && !/^(https?:|data:|file:|blob:)/.test(m[1])) {
+          el.style.setProperty(prop, 'url("' + new URL(m[1], document.baseURI).href + '")');
+        }
+      });
+    });
+  }
+  window.BROOKS_absolutiseBg = absolutise;
+  absolutise(document);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { absolutise(document); });
+})();
+
 (function () {
   'use strict';
   var B = window.BROOKS;
@@ -165,6 +185,7 @@ document.documentElement.classList.add('js');
   window.BROOKS.refresh = function (root) {
     root = root || document;
     fillContacts(root);
+    if (window.BROOKS_absolutiseBg) window.BROOKS_absolutiseBg(root);
     $$(imgSel, root).forEach(function (img) { if (!img.closest('.mega, .drawer')) img.classList.add('img-reveal'); });
     observeAll(root);
     initTabs(root);
@@ -339,4 +360,37 @@ document.documentElement.classList.add('js');
       showSuccess(form, '<div><strong>You are on the list</strong><p>Look out for our next Field Notes in your inbox.</p></div>');
     });
   });
+})();
+
+/* ---------- Theme (light / dark) ---------- */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  var KEY = 'brooks-theme';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function sync() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    Array.prototype.forEach.call(document.querySelectorAll('[data-theme-toggle]'), function (b) {
+      b.setAttribute('aria-pressed', String(dark));
+      b.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      b.setAttribute('title', dark ? 'Light theme' : 'Dark theme');
+    });
+  }
+  function apply(theme, save) {
+    root.setAttribute('data-theme', theme);
+    if (save) { try { localStorage.setItem(KEY, theme); } catch (e) {} }
+    sync();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-theme-toggle]');
+    if (!b) return;
+    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+  });
+  /* follow the OS setting live unless the visitor has chosen explicitly */
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function (m) { if (!stored() && !/[?&]theme=/.test(location.search)) apply(m.matches ? 'dark' : 'light', false); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
+  }
+  sync();
 })();

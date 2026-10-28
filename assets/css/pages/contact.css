@@ -9,18 +9,18 @@
 }
 .contact-card {
   display: flex; flex-direction: column; gap: 10px;
-  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
   padding: 30px 28px; box-shadow: var(--shadow);
 }
 .contact-card h2 { margin: 6px 0 0; }
 .contact-card p { margin: 0; }
 .contact-card__icon {
   width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%;
-  background: var(--gold-100); color: var(--gold-600); border: 1px solid rgba(184,142,46,.3);
+  background: var(--gold-100); color: var(--gold-text); border: 1px solid rgba(184,142,46,.3);
 }
 .contact-card__value { font-family: "Fraunces", Georgia, serif; font-size: 1.25rem; font-weight: 600; overflow-wrap: anywhere; }
-.contact-card__value a { color: var(--green-800); text-decoration: none; }
-.contact-card__value a:hover { color: var(--gold-600); }
+.contact-card__value a { color: var(--accent); text-decoration: none; }
+.contact-card__value a:hover { color: var(--gold-text); }
 .contact-card__actions { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
 .hours { margin: 4px 0 0; display: grid; gap: 4px; font-size: .92rem; }
 .hours div { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
@@ -34,11 +34,11 @@
 /* Form + aside */
 .contact-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: start; }
 .contact-form-card {
-  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
   padding: 40px; box-shadow: var(--shadow-sm);
 }
 .contact-form-card .section-head { margin-bottom: 26px; }
-.req { color: var(--gold-600); }
+.req { color: var(--gold-text); }
 .contact-form input:user-invalid,
 .contact-form select:user-invalid,
 .contact-form textarea:user-invalid { border-color: #b4412f; box-shadow: 0 0 0 3px rgba(180,65,47,.12); }
@@ -61,7 +61,7 @@
   flex: 0 0 52px; height: 52px; display: grid; place-items: center; border-radius: 50%;
   background: rgba(201,168,76,.15); color: var(--gold-400); border: 1px solid rgba(201,168,76,.4);
 }
-.map-card { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: var(--white); box-shadow: var(--shadow-sm); }
+.map-card { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-sm); }
 .map-card iframe { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; border: 0; background: var(--green-50); }
 .map-card__caption { display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; font-size: .9rem; }
 .map-card__caption span { color: var(--muted); }

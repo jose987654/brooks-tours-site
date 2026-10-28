@@ -17,7 +17,7 @@
 .svc-tile {
   position: relative; display: flex; flex-direction: column; gap: .75rem; height: 100%;
   padding: clamp(1.4rem, 1.2rem + 1vw, 2rem);
-  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: var(--shadow-sm); text-decoration: none; color: var(--ink); overflow: hidden;
   transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out), border-color var(--t);
 }
@@ -46,11 +46,11 @@
   position: absolute; left: 1rem; bottom: 1rem; z-index: 1;
   display: flex; flex-direction: column; gap: .1rem;
   padding: .8rem 1.1rem; border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, .94); box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, .94); background: color-mix(in srgb, var(--surface) 94%, transparent); box-shadow: var(--shadow);
   font-size: .8125rem; color: var(--muted); max-width: calc(100% - 2rem);
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
-.svc-media__tag strong { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--green-900); line-height: 1.1; }
+.svc-media__tag strong { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--heading-2); line-height: 1.1; }
 
 /* Big link to visa.html */
 .svc-biglink {
@@ -85,7 +85,7 @@
 .svc-panel__list { display: grid; gap: 0; margin: 0; }
 .svc-panel__list > div { display: grid; gap: .2rem; padding: 1rem 0; border-top: 1px solid var(--line); }
 .svc-panel__list > div:first-child { border-top: 0; padding-top: 0; }
-.svc-panel__list dt { font-weight: 600; color: var(--green-900); font-size: .9375rem; }
+.svc-panel__list dt { font-weight: 600; color: var(--heading-2); font-size: .9375rem; }
 .svc-panel__list dd { margin: 0; color: var(--muted); font-size: .9375rem; }
 @media (min-width: 560px) {
   .svc-panel__list > div { grid-template-columns: 11rem minmax(0, 1fr); gap: 1.25rem; }
@@ -111,6 +111,6 @@
 .svc-quote .btn-whatsapp { align-self: flex-start; }
 .svc-contact { display: grid; gap: .9rem; padding: 1.25rem 0; border-block: 1px solid var(--line); }
 .svc-contact li { display: grid; gap: .1rem; font-weight: 500; }
-.svc-contact span { font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-600); }
-.svc-contact a { color: var(--green-800); text-decoration: none; overflow-wrap: anywhere; }
-.svc-contact a:hover { color: var(--gold-600); }
+.svc-contact span { font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-text); }
+.svc-contact a { color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
+.svc-contact a:hover { color: var(--gold-text); }
