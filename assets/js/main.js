@@ -394,3 +394,58 @@ document.documentElement.classList.add('js');
   }
   sync();
 })();
+
+/* Progressive HQ photos: pages open with the light photos; on tablets and desktops the
+   high-quality original (name-hq.webp) is fetched after load for photos near the viewport,
+   two at a time, and swapped in once cached so the switch is invisible. Phones and
+   data-saver / 2G connections keep the light versions. */
+(function () {
+  var c = navigator.connection;
+  if (window.innerWidth < 900 || (c && (c.saveData || /2g/.test(c.effectiveType || '')))) return;
+  function hqOf(url) {
+    var m = /^(.*assets\/img\/[\w-]+)\.webp$/.exec(url || '');
+    return m && !/-(sm|hq)$/.test(m[1]) ? m[1] + '-hq.webp' : null;
+  }
+  function bgUrl(el) {
+    var m = /url\(\s*['"]?([^'")]+)['"]?\s*\)/.exec(el.style.getPropertyValue('--hero') || '');
+    return m && m[1];
+  }
+  var queue = [], active = 0, done = new WeakSet();
+  function pump() {
+    while (active < 2 && queue.length) {
+      (function (job) {
+        active++;
+        var pre = new Image();
+        pre.onload = function () { job.apply(job.hq); active--; pump(); };
+        pre.onerror = function () { active--; pump(); };
+        pre.src = job.hq;
+      })(queue.shift());
+    }
+  }
+  function enqueue(el) {
+    if (done.has(el)) return;
+    if (el.tagName === 'IMG') {
+      if (!el.getAttribute('src')) { el.addEventListener('load', function () { enqueue(el); }, { once: true }); return; }
+      var hq = hqOf(el.currentSrc || el.src);
+      if (!hq) return;
+      done.add(el);
+      queue.push({ hq: hq, apply: function (u) { el.removeAttribute('srcset'); el.src = u; } });
+    } else {
+      var hq2 = hqOf(bgUrl(el));
+      if (!hq2) return;
+      done.add(el);
+      queue.push({ hq: hq2, apply: function (u) { el.style.setProperty('--hero', 'url("' + u + '")'); } });
+    }
+    pump();
+  }
+  function scan() {
+    var els = document.querySelectorAll('main img, [style*="--hero"]');
+    if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(els, enqueue); return; }
+    var io = scan.io || (scan.io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { scan.io.unobserve(e.target); enqueue(e.target); } });
+    }, { rootMargin: '400px 0px' }));
+    Array.prototype.forEach.call(els, function (el) { if (!done.has(el)) io.observe(el); });
+  }
+  function start() { (window.requestIdleCallback || setTimeout)(function () { scan(); setTimeout(scan, 2000); }, { timeout: 1200 }); }
+  if (document.readyState === 'complete') start(); else window.addEventListener('load', start);
+})();
