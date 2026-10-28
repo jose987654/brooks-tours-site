@@ -59,6 +59,7 @@
 .visa-ptabs { margin-top: .5rem; }
 .visa-ptabs [role="tablist"] { margin-bottom: 1.4rem; }
 .visa-ptabs [role="tab"] { white-space: nowrap; font-size: .9rem; padding: .6rem 1rem; }
+@media (max-width: 400px) { .visa-ptabs [role="tab"] { padding: .55rem .75rem; font-size: .84rem; } }
 .visa-ptabs .icon-list { font-size: .9688rem; }
 .visa-fees {
   position: relative; padding: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);

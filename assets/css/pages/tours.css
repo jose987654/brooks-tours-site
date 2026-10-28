@@ -5,14 +5,14 @@
 
 /* ---------- Filters panel (desktop sidebar) ---------- */
 .tours-filters {
-  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm); display: flex; flex-direction: column; min-width: 0;
 }
 .tours-filters__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.4rem 1.5rem 0; }
 .tours-filters__title { font-size: 1.3rem; font-weight: 500; }
 .tours-filters__close {
   display: none; place-items: center; width: 42px; height: 42px; border-radius: 50%;
-  border: 1px solid var(--line); background: var(--white); color: var(--green-900); cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--heading-2); cursor: pointer;
 }
 .tours-filters__body { display: flex; flex-direction: column; gap: 1.5rem; padding: 1.25rem 1.5rem 1.5rem; }
 .tf-group { border: 0; padding: 0; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: .7rem; }
@@ -25,13 +25,13 @@ legend.tf-label + * { clear: both; }
 .tf-search { position: relative; }
 .tf-search svg { position: absolute; left: .95rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
 .tf-search input, .tf-select, .tours-sort select {
-  width: 100%; min-height: 46px; border: 1px solid #cfd8d2; border-radius: var(--radius-sm); background: var(--white);
+  width: 100%; min-height: 46px; border: 1px solid var(--input-border); border-radius: var(--radius-sm); background: var(--surface);
   font: inherit; font-size: .9375rem; color: var(--ink); transition: border-color var(--t), box-shadow var(--t);
 }
 .tf-search input { padding: .6rem .9rem .6rem 2.6rem; }
 .tf-select, .tours-sort select {
   padding: .6rem 2.4rem .6rem .9rem; appearance: none; -webkit-appearance: none; cursor: pointer;
-  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2308331c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right .8rem center / 16px no-repeat;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2308331c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right .8rem center / 16px no-repeat;
 }
 .tf-search input:focus, .tf-select:focus, .tours-sort select:focus { outline: none; border-color: var(--green-700); box-shadow: 0 0 0 4px rgba(29, 107, 71, .14); }
 .tours-filters__foot { display: flex; gap: .6rem; padding: 0 1.5rem 1.5rem; }
@@ -42,7 +42,7 @@ legend.tf-label + * { clear: both; }
 .tours-results { min-width: 0; }
 .tours-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .9rem 1.25rem; margin-bottom: 1.25rem; }
 .tours-count { color: var(--muted); font-size: .9375rem; }
-.tours-count strong { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: var(--green-900); margin-right: .2rem; vertical-align: -2px; }
+.tours-count strong { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: var(--heading-2); margin-right: .2rem; vertical-align: -2px; }
 .tours-toolbar__actions { display: flex; align-items: center; gap: .6rem; }
 .tours-sort select { min-height: 42px; width: auto; min-width: 190px; font-size: .875rem; font-weight: 500; border-radius: 999px; padding-left: 1.1rem; }
 .tours-filter-btn { display: none; gap: .5rem; cursor: pointer; font-family: inherit; }
@@ -57,13 +57,13 @@ legend.tf-label + * { clear: both; }
 .tours-active[hidden] { display: none; }
 .tours-active__pill {
   display: inline-flex; align-items: center; gap: .4rem; min-height: 34px; padding: .35rem .55rem .35rem .85rem;
-  border-radius: 999px; border: 1px solid rgba(160, 122, 34, .35); background: var(--gold-100); color: var(--green-900);
+  border-radius: 999px; border: 1px solid rgba(160, 122, 34, .35); background: var(--gold-100); color: var(--heading-2);
   font: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer; transition: background-color var(--t), border-color var(--t);
 }
 .tours-active__pill svg { opacity: .7; }
-.tours-active__pill:hover { background: var(--white); border-color: var(--gold-500); }
+.tours-active__pill:hover { background: var(--surface); border-color: var(--gold-500); }
 .tours-active__clear {
-  border: 0; background: none; padding: .35rem .5rem; font: inherit; font-size: .8125rem; font-weight: 600; color: var(--green-700);
+  border: 0; background: none; padding: .35rem .5rem; font: inherit; font-size: .8125rem; font-weight: 600; color: var(--accent);
   text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--gold-400); cursor: pointer;
 }
 .tours-active__clear:hover { color: var(--gold-600); }
@@ -84,7 +84,7 @@ legend.tf-label + * { clear: both; }
 .tours-empty {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: .9rem;
   padding: clamp(2.5rem, 2rem + 3vw, 4.5rem) clamp(1.25rem, 1rem + 2vw, 3rem);
-  border: 1px dashed #cdd6cf; border-radius: var(--radius-lg); background: var(--white);
+  border: 1px dashed var(--input-border); border-radius: var(--radius-lg); background: var(--surface);
 }
 .tours-empty[hidden] { display: none; }
 .tours-empty svg { color: var(--gold-500); }
@@ -118,7 +118,7 @@ legend.tf-label + * { clear: both; }
   .tours-filters__head { padding: 1.4rem 1.25rem .9rem; border-bottom: 1px solid var(--line); }
   .tours-filters__close { display: grid; }
   .tours-filters__body { overflow-y: auto; overscroll-behavior: contain; flex: 1; padding: 1.25rem; }
-  .tours-filters__foot { padding: .9rem 1.25rem max(.9rem, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--white); }
+  .tours-filters__foot { padding: .9rem 1.25rem max(.9rem, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--surface); }
   .tours-filters__apply { display: inline-flex; flex: 1.6 !important; }
   .tours-sheet-backdrop { position: fixed; inset: 0; z-index: 155; background: rgba(4, 21, 14, .5); opacity: 0; transition: opacity .3s; }
   .tours-sheet-backdrop.is-open { opacity: 1; }

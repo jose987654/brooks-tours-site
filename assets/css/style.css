@@ -626,7 +626,9 @@ a.img-card:hover .img-card__overlay::after, a.img-card:focus-visible .img-card__
 /* =========================================================================
    HEADER
    ========================================================================= */
-.site-header { position: sticky; top: 0; z-index: 100; }
+.site-header { position: sticky; top: calc(var(--utility-h) * -1); z-index: 100; }
+/* Sticky offset = minus the utility bar height: the utility bar scrolls away naturally and the
+   main bar sticks at the top, so the visible sticky header height is exactly var(--header-h). */
 .utility-bar {
   display: none; height: var(--utility-h); background: var(--green-950); color: rgba(255, 255, 255, .72);
   font-size: .8125rem; transition: margin-top .4s var(--ease), background-color .4s;
@@ -645,7 +647,7 @@ a.img-card:hover .img-card__overlay::after, a.img-card:focus-visible .img-card__
   transition: background-color .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
 }
 @supports (backdrop-filter: blur(10px)) { .main-bar { background: rgba(255, 255, 255, .9); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); } }
-.main-bar .container { display: flex; align-items: center; gap: 1.5rem; height: var(--header-h); }
+.main-bar .container { display: flex; align-items: center; gap: 1.5rem; height: calc(var(--header-h) - 1px); }
 .site-header.is-scrolled .main-bar { box-shadow: 0 8px 30px -12px rgba(4, 21, 14, .22); border-color: transparent; }
 
 .brand { display: inline-flex; align-items: center; flex: none; margin-right: auto; text-decoration: none; }
@@ -654,7 +656,7 @@ a.img-card:hover .img-card__overlay::after, a.img-card:focus-visible .img-card__
 .brand .logo-light { display: none; }
 
 /* Home: transparent over hero until scrolled */
-body[data-page="index"] .site-header { position: fixed; left: 0; right: 0; }
+body[data-page="index"] .site-header { position: fixed; top: 0; left: 0; right: 0; }
 body[data-page="index"] .site-header:not(.is-scrolled):not(.drawer-open) .main-bar {
   background: transparent; border-color: rgba(255, 255, 255, .14); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
 }
@@ -666,9 +668,7 @@ body[data-page="index"] .site-header:not(.is-scrolled):not(.drawer-open) .header
 body[data-page="index"] .site-header:not(.is-scrolled):not(.drawer-open) .nav-toggle { color: var(--white); }
 body[data-page="index"] .site-header:not(.is-scrolled):not(.drawer-open) .header-phone small { color: rgba(255, 255, 255, .7); }
 body[data-page="index"] .site-header:not(.is-scrolled):not(.drawer-open) .nav-link::after { background: var(--gold-400); }
-@media (min-width: 1024px) {
-  .site-header.is-scrolled .utility-bar { margin-top: calc(var(--utility-h) * -1); }
-}
+
 body[data-page="index"] .site-header.is-scrolled .utility-bar { margin-top: calc(var(--utility-h) * -1); }
 
 /* Desktop nav */

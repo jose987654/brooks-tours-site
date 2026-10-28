@@ -114,3 +114,5 @@
 .svc-contact span { font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-text); }
 .svc-contact a { color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
 .svc-contact a:hover { color: var(--gold-text); }
+.svc-quote .form { grid-template-columns: minmax(0, 1fr); }
+.svc-quote .form-panel { min-width: 0; }

@@ -523,7 +523,7 @@
 @media (max-width: 600px) { .why__grid { grid-template-columns: 1fr; } .why__tile { padding: 1.5rem; } }
 
 /* ---------- 10. Reviews ---------- */
-.reviews__summary { display: flex; align-items: center; gap: 1rem; font-size: .9rem; }
+.reviews__summary, .section-head--split > .reviews__summary { display: flex; flex-direction: row; align-items: center; gap: 1rem; font-size: .9rem; }
 .reviews__score {
   font-family: "Fraunces", Georgia, serif; font-size: 3.2rem; line-height: 1; font-weight: 600; color: var(--heading-2);
 }
@@ -563,7 +563,7 @@
   color: var(--white);
 }
 .impact__media { position: relative; min-height: 26rem; overflow: hidden; }
-.impact__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.impact__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; }
 .impact__copy {
   padding: clamp(3rem, 7vw, 6.5rem) clamp(1.25rem, 6vw, 6rem);
   max-width: 44rem;
