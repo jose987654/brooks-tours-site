@@ -147,7 +147,7 @@ window.BROOKS_UGANDA_PLACES = [
     bestFor: ["Hiking", "Scenery"],
     bestTime: "Jun–Aug and Dec–Feb (the drier months)",
     stayAt: ["Equator Snow Lodge", "Ruboni Community Camp"],
-    tourSlugs: []
+    tourSlugs: ["rwenzori-margherita-peak-8d", "rwenzori-mahoma-trail-3d"]
   },
   {
     id: "kibale", name: "Kibale National Park", short: "Kibale", region: "western", order: 14,

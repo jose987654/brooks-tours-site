@@ -137,9 +137,23 @@
     try { history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "")); } catch (e) { /* file:// in some browsers */ }
   }
 
+  // Closing card in the results: a tailor-made trip in the filtered country (or anywhere)
+  function customCard() {
+    var c = state.country.length === 1 ? state.country[0] : "";
+    var name = c ? COUNTRY[c] : "East Africa";
+    var href = "enquire.html" + (c ? "?d=" + c : "");
+    return '<article class="tour-card tour-card--custom"><div class="tour-card__body">' +
+      '<span class="eyebrow">Tailor-made</span>' +
+      '<h3><a href="' + href + '">Design your own ' + name + ' tour</a></h3>' +
+      '<p>Pick the places, the pace and the lodges. Mix gorillas, a Rwenzori climb, chimps, game drives or the Nile, and we build the route and quote within 24 hours.</p>' +
+      '<ul class="icon-list"><li>Any length, any start date</li><li>Private vehicle and guide</li><li>Free, no-obligation itinerary</li></ul>' +
+      '<div class="tour-card__foot"><a class="btn btn-primary btn-sm" href="' + href + '">Start planning <span class="arr">→</span></a></div>' +
+      '</div></article>';
+  }
+
   function render() {
     var list = sorted(TOURS.filter(matches));
-    grid.innerHTML = list.map(window.brooksTourCard).join("");
+    grid.innerHTML = list.map(window.brooksTourCard).join("") + (list.length ? customCard() : "");
     grid.hidden = !list.length;
     empty.hidden = !!list.length;
     document.querySelectorAll("[data-count]").forEach(function (el) { el.textContent = list.length; });

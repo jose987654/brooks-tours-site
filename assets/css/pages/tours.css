@@ -131,3 +131,11 @@ legend.tf-label + * { clear: both; }
   .tours-sort select { padding-left: .9rem; padding-right: 2rem; background-position: right .65rem center; }
   .tours-filter-btn { justify-content: center; }
 }
+
+/* Tailor-made closing card in the results grid */
+.tour-card--custom { background: var(--green-900); color: #e9efe9; border-color: transparent; display: flex; }
+.tour-card--custom .tour-card__body { display: flex; flex-direction: column; gap: .85rem; padding: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.tour-card--custom h3, .tour-card--custom h3 a { color: #fff; }
+.tour-card--custom p, .tour-card--custom .icon-list li { color: rgba(233, 239, 233, .82); }
+.tour-card--custom .eyebrow { color: var(--gold-400); }
+.tour-card--custom .tour-card__foot { margin-top: auto; border-top-color: rgba(255, 255, 255, .12); }

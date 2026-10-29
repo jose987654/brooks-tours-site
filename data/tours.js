@@ -459,7 +459,76 @@ window.BROOKS_TOURS = [
     included: ["Ziwa rhino tracking", "8 nights accommodation, full board", "Private 4x4 Land Cruiser and driver-guide", "Nile launch and shoebill boat trip", "Karamojong cultural visit", "Kidepo–Entebbe flight", "Park fees"],
     excluded: ["International flights", "Uganda visa ($50)", "Tips", "Travel insurance", "Drinks"],
     offer: false
+  },
+  {
+    slug: "rwenzori-margherita-peak-8d",
+    title: "Rwenzori Climb: Margherita Peak (5,109 m)",
+    days: 8, nights: 7,
+    countries: ["uganda"],
+    experiences: ["hiking"],
+    style: "Mid-range",
+    priceFrom: 2450,
+    badge: "Summit climb",
+    image: "rwenzori-glacier",
+    gallery: ["rwenzori-glacier", "rwenzori-lobelia", "rwenzori", "crater-lakes"],
+    summary: "Climb Africa's third-highest summit on the Central Circuit: moss forests, giant lobelias and the Stanley Glacier to Margherita Peak, the roof of the Mountains of the Moon.",
+    highlights: [
+      "Summit Margherita Peak (5,109 m) on Mount Stanley, Africa's third-highest point",
+      "Full Central Circuit loop through bamboo, heather forest and the alpine bogs of the Bujuku valley",
+      "Glacier crossing on the Stanley Plateau with rope, crampons and harness provided",
+      "Experienced Rwenzori mountain guides, porters and a cook on every day of the climb",
+      "Mountain huts throughout: Nyabitaba, John Matte, Bujuku, Elena, Kitandara and Guy Yeoman",
+      "Shorter non-technical option: trek the circuit without the summit day"
+    ],
+    bestMonths: "Late Dec–Feb and Jun–Aug (driest); the Rwenzori is wet all year",
+    months: [1, 2, 6, 7, 8, 12],
+    groupSize: "Private, 2–8 (fitness and some scrambling experience needed)",
+    itinerary: [
+      { day: "1", title: "Kampala to Kasese and Nyakalengija", text: "Drive west via Fort Portal (about 6 hours) to the foothills of the Rwenzori. Kit check with your mountain guide in the evening and a full briefing on the route, altitude and glacier day.", overnight: "Equator Snow Lodge", meals: "L/D" },
+      { day: "2", title: "Nyakalengija to Nyabitaba Hut (2,650 m)", text: "Register at the park office and walk up the Mubuku valley through farmland and montane forest, watching for Rwenzori turacos, blue monkeys and three-horned chameleons. About 5 hours.", overnight: "Nyabitaba Hut", meals: "B/L/D" },
+      { day: "3", title: "Nyabitaba to John Matte Hut (3,380 m)", text: "Cross the Kurt Schafer bridge and climb through bamboo and giant heather draped in old-man's-beard moss. Your first views of the snow peaks open up in the afternoon. About 7 hours.", overnight: "John Matte Hut", meals: "B/L/D" },
+      { day: "4", title: "John Matte to Bujuku Hut (3,900 m)", text: "Wade through the Lower and Upper Bigo bogs on boardwalks among giant lobelias and groundsels to Lake Bujuku, under Mount Baker, Mount Speke and Mount Stanley.", overnight: "Bujuku Hut", meals: "B/L/D" },
+      { day: "5", title: "Bujuku to Elena Hut (4,540 m)", text: "Climb past the Scott Elliot Pass junction to Elena Hut at the foot of the Stanley glaciers. Short afternoon and early night before summit day.", overnight: "Elena Hut", meals: "B/L/D" },
+      { day: "6", title: "Summit day: Margherita Peak (5,109 m)", text: "Leave around 2am. Rope up to cross the Stanley Plateau and the Margherita Glacier, then scramble the final rocks to the summit. Descend to Kitandara Hut beside its twin lakes. 10 to 14 hours.", overnight: "Kitandara Hut", meals: "B/L/D" },
+      { day: "7", title: "Kitandara to Guy Yeoman Hut (3,505 m)", text: "Cross Freshfield Pass (4,282 m) with views to the Congo side, then descend the Mubuku valley past waterfalls and rock shelters.", overnight: "Guy Yeoman Hut", meals: "B/L/D" },
+      { day: "8", title: "Descend to Nyakalengija and Kasese", text: "Walk down to Nyabitaba and out to the trailhead, collect your summit certificate and transfer to a lodge with a hot shower. Next day drive back to Kampala or continue to Queen Elizabeth or Kibale.", overnight: "End of climb", meals: "B/L" }
+    ],
+    included: ["Rwenzori Mountains National Park entry and climbing fees", "Mountain guides, porters (15 kg per climber) and cook", "Hut accommodation and all meals on the mountain", "Glacier equipment: ropes, harness, crampons, ice axe", "Rescue fee", "Private transfers Kampala–Kasese and 1 lodge night"],
+    excluded: ["International flights", "Uganda visa ($50, or East Africa Tourist Visa $100)", "Personal gear: sleeping bag (-10 °C), boots, waterproofs (rental available)", "Tips for guides and porters", "Travel insurance covering high-altitude trekking", "Drinks"],
+    offer: false
+  },
+  {
+    slug: "rwenzori-mahoma-trail-3d",
+    title: "Rwenzori Mahoma Trail: 3-Day Hike",
+    days: 3, nights: 2,
+    countries: ["uganda"],
+    experiences: ["hiking", "birding"],
+    style: "Mid-range",
+    priceFrom: 890,
+    badge: "New",
+    image: "rwenzori-lobelia",
+    gallery: ["rwenzori-lobelia", "rwenzori", "rwenzori-glacier", "crater-lakes"],
+    summary: "A taste of the Mountains of the Moon without the summit: a three-day loop through montane forest and heather to Lake Mahoma, ideal to add to a gorilla or chimp safari.",
+    highlights: [
+      "Non-technical loop on the Mahoma Trail, fit walkers only, no climbing experience needed",
+      "Montane forest with Rwenzori turacos, L'Hoest's monkeys and three-horned chameleons",
+      "Night beside Lake Mahoma (2,651 m) in the heather zone",
+      "Mountain guide, porters and cook included",
+      "Easy to combine with Kibale chimps or Queen Elizabeth game drives"
+    ],
+    bestMonths: "Dec–Feb and Jun–Aug (drier trails)",
+    months: [1, 2, 6, 7, 8, 12],
+    groupSize: "Private, 2–8",
+    itinerary: [
+      { day: "1", title: "Nyakalengija to Nyabitaba Hut", text: "Start from the Rwenzori Mountaineering Services base at Nyakalengija and climb through farmland and forest along the Mubuku river to Nyabitaba Hut (2,650 m).", overnight: "Nyabitaba Hut", meals: "B/L/D" },
+      { day: "2", title: "Nyabitaba to Lake Mahoma", text: "Climb through bamboo and giant heather to the dark waters of Lake Mahoma, ringed by moss-hung trees. Afternoon walk to a viewpoint over the valley.", overnight: "Mahoma Camp", meals: "B/L/D" },
+      { day: "3", title: "Lake Mahoma to Nyakalengija", text: "Descend via the Mahoma river valley back to the trailhead, then transfer to Kasese or Fort Portal, or continue your safari.", overnight: "End of hike", meals: "B/L" }
+    ],
+    included: ["Park entry and hiking fees", "Mountain guide, porters and cook", "Huts or camp and all meals on the mountain", "Rescue fee", "Transfer to and from Nyakalengija"],
+    excluded: ["Transport from Kampala (add to any safari)", "Sleeping bag and personal gear", "Tips", "Travel insurance", "Drinks"],
+    offer: false
   }
+
 ];
 
 /* Shared helpers for any page that renders tours (cards on home, tours, offers, tour pages). */
