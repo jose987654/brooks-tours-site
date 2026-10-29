@@ -131,6 +131,56 @@
         '<div class="park-card__body"><span class="park-card__num">' + (i < 9 ? "0" : "") + (i + 1) + "</span><h3>" + esc(p.name) + "</h3><p>" + esc(p.text) + "</p></div></article>";
     }).join("") + "</div></div></section>";
 
+  /* ---------- Uganda region by region (Uganda only) ---------- */
+  var UG_PLACES = d.slug === "uganda" && Array.isArray(window.BROOKS_UGANDA_PLACES) ? window.BROOKS_UGANDA_PLACES : null;
+  var UG_REGIONS = [
+    { id: "western", tab: "Western Uganda · from Masaka", label: "Western Uganda", start: "Kampala",
+      intro: "The classic circuit leaves Kampala on the Masaka road, climbs into the gorilla highlands of the far south-west, runs north along the Rift Valley to Fort Portal and returns past Lake Albert and Budongo. Allow 10 to 16 days to do it justice." },
+    { id: "northern", tab: "Northern Uganda", label: "Northern Uganda", start: "Kampala",
+      intro: "North from Kampala to the rhinos of Ziwa and the falls of Murchison, across the Nile into West Nile and Acholiland, then out to remote Kidepo, looping home through Karamoja and Mount Elgon. Allow 9 to 14 days, or fly one way." }
+  ];
+  function ugPad(n) { return (n < 10 ? "0" : "") + n; }
+  function ugRegion(id) {
+    return UG_PLACES.filter(function (p) { return p.region === id; }).sort(function (a, b) { return a.order - b.order; });
+  }
+  if (UG_PLACES) {
+    var ugHash = (location.hash || "").slice(1);
+    var ugActive = ugHash === "northern" ? "northern" : "western";
+    html += '<section class="section ug-regions" id="regions" aria-labelledby="ug-title"><div class="container">' +
+      '<header class="section-head section-head--split"><div><span class="eyebrow">Uganda region by region</span><h2 id="ug-title">From Masaka to Kidepo</h2></div>' +
+      '<p class="lead">Uganda is compact enough to explore by road, and its best places line up along two great circuits. Follow them stop by stop, in the order you reach them from Kampala, with real drive times and the lodges we use.</p></header>' +
+      '<div class="tabs ug-tabs"><div class="ug-tabs__list" role="tablist" aria-label="Uganda regions">' +
+      UG_REGIONS.map(function (r) {
+        var on = r.id === ugActive;
+        return '<button type="button" role="tab" id="ug-tab-' + r.id + '" aria-controls="' + r.id + '" aria-selected="' + on + '"' + (on ? "" : ' tabindex="-1"') + ">" +
+          esc(r.tab) + '<span class="ug-tabs__count">' + ugRegion(r.id).length + " stops</span></button>";
+      }).join("") + "</div>" +
+      UG_REGIONS.map(function (r) {
+        var list = ugRegion(r.id);
+        return '<div class="ug-panel" role="tabpanel" id="' + r.id + '" aria-labelledby="ug-tab-' + r.id + '"' + (r.id === ugActive ? "" : " hidden") + ">" +
+          '<p class="ug-panel__intro">' + esc(r.intro) + "</p>" +
+          '<nav class="ug-route" aria-label="' + esc(r.label) + ' route in road order"><ol class="ug-route__list">' +
+          '<li class="ug-route__item ug-route__item--start"><span class="ug-route__dot" aria-hidden="true">' + icon("pin") + '</span><span class="ug-route__name">' + esc(r.start) + "</span></li>" +
+          list.map(function (p) {
+            return '<li class="ug-route__item"><a class="ug-route__stop" href="#ug-' + esc(p.id) + '" data-ug-stop="' + esc(p.id) + '">' +
+              '<span class="ug-route__dot">' + p.order + '</span><span class="ug-route__name">' + esc(p.short || p.name) + "</span></a></li>";
+          }).join("") + "</ol></nav>" +
+          '<div class="ug-grid">' + list.map(function (p) {
+            return '<article class="ug-card" id="ug-' + esc(p.id) + '">' +
+              '<div class="ug-card__media"><img src="' + img(p.image) + '" alt="' + esc(p.name) + '" width="720" height="480" loading="lazy">' +
+              '<span class="ug-card__num" aria-hidden="true">' + ugPad(p.order) + "</span></div>" +
+              '<div class="ug-card__body"><span class="ug-card__district">' + icon("pin") + esc(p.district) + "</span>" +
+              '<h3><button type="button" class="ug-card__open" data-ug-open="' + esc(p.id) + '" aria-haspopup="dialog"><span class="sr-only">Stop ' + p.order + ": </span>" + esc(p.name) + "</button></h3>" +
+              '<p class="ug-card__tagline">' + esc(p.tagline) + "</p>" +
+              '<p class="ug-card__drive">' + icon("map") + "<span>" + esc(p.driveFromKampala) + " from Kampala</span></p>" +
+              '<ul class="ug-tags" aria-label="Best for">' + (p.bestFor || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
+              '<span class="ug-card__more" aria-hidden="true">Read more <span class="arr">→</span></span>' +
+              "</div></article>";
+          }).join("") + "</div></div>";
+      }).join("") +
+      "</div></div></section>";
+  }
+
   /* ---------- when to go ---------- */
   var months = d.months || [];
   var nowM = new Date().getMonth();
@@ -195,4 +245,173 @@
     }).join("") + "</div></div></section>";
 
   document.getElementById("d-app").innerHTML = html;
+
+  if (UG_PLACES) initUgandaRegions();
+
+  /* ---------- Uganda region by region: tabs, deep links, route strip, detail dialog ---------- */
+  function initUgandaRegions() {
+    var section = document.getElementById("regions");
+    if (!section) return;
+    var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var byId = {};
+    UG_PLACES.forEach(function (p) { byId[p.id] = p; });
+    var tourBySlug = {};
+    TOURS.forEach(function (t) { if (t && t.slug) tourBySlug[t.slug] = t; });
+    I.clock = '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>';
+    I.bed = '<path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/>';
+    I.check = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+
+    /* tabs: main.js wires the shared .tabs keyboard behaviour; we add the URL hash + selection on hash change */
+    var tabs = [].slice.call(section.querySelectorAll('[role="tab"]'));
+    function selectTab(id) {
+      tabs.forEach(function (b) {
+        var on = b.getAttribute("aria-controls") === id;
+        b.setAttribute("aria-selected", String(on));
+        b.setAttribute("tabindex", on ? "0" : "-1");
+        var p = document.getElementById(b.getAttribute("aria-controls"));
+        if (p) p.hidden = !on;
+      });
+    }
+    tabs.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var id = b.getAttribute("aria-controls");
+        selectTab(id);
+        if (history.replaceState) history.replaceState(null, "", "#" + id);
+      });
+    });
+    function scrollToSection(smooth) {
+      var target = section.querySelector(".ug-tabs") || section;
+      target.scrollIntoView({ behavior: smooth && !reduceMotion ? "smooth" : "auto", block: "start" });
+    }
+    function fromHash(smooth) {
+      var h = (location.hash || "").slice(1);
+      if (h === "western" || h === "northern") { selectTab(h); scrollToSection(smooth); }
+      else if (h === "regions") { section.scrollIntoView({ behavior: smooth && !reduceMotion ? "smooth" : "auto", block: "start" }); }
+    }
+    window.addEventListener("hashchange", function () { fromHash(true); });
+    if (/^#(western|northern|regions)$/.test(location.hash)) {
+      // the browser's own fragment jump lands on the panel; re-align to the tabs once layout settles
+      fromHash(false);
+      window.addEventListener("load", function () { setTimeout(function () { fromHash(false); }, 60); });
+    }
+
+    /* route strip: scroll to the card without touching the URL */
+    section.addEventListener("click", function (e) {
+      var stop = e.target.closest("[data-ug-stop]");
+      if (!stop) return;
+      e.preventDefault();
+      var card = document.getElementById("ug-" + stop.getAttribute("data-ug-stop"));
+      if (!card) return;
+      card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      card.classList.remove("is-flash"); void card.offsetWidth; card.classList.add("is-flash");
+      var btn = card.querySelector(".ug-card__open");
+      if (btn) btn.focus({ preventScroll: true });
+    });
+
+    /* detail dialog */
+    var modal = document.createElement("div");
+    modal.className = "ug-modal";
+    modal.hidden = true;
+    modal.innerHTML = '<div class="ug-modal__backdrop" data-ug-close></div>' +
+      '<div class="ug-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="ug-modal-title" tabindex="-1">' +
+      '<button type="button" class="ug-modal__close" data-ug-close aria-label="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
+      '<div class="ug-modal__content"></div></div>';
+    document.body.appendChild(modal);
+    var dialog = modal.querySelector(".ug-modal__dialog");
+    var content = modal.querySelector(".ug-modal__content");
+    var opener = null, current = null, inerted = [];
+
+    function render(p) {
+      var list = ugRegion(p.region);
+      var idx = list.indexOf(p), prev = list[idx - 1], next = list[idx + 1];
+      var region = p.region === "northern" ? "Northern Uganda" : "Western Uganda";
+      var tours = (p.tourSlugs || []).map(function (s) { return tourBySlug[s]; }).filter(Boolean);
+      content.innerHTML =
+        '<figure class="ug-modal__media"><img src="' + img(p.image, "lg") + '" alt="' + esc(p.name) + '" width="1800" height="1200">' +
+        '<figcaption class="ug-modal__head"><span class="ug-modal__kicker">' + esc(region) + " · Stop " + p.order + " of " + list.length + "</span>" +
+        '<h2 id="ug-modal-title">' + esc(p.name) + "</h2><p>" + esc(p.tagline) + "</p></figcaption></figure>" +
+        '<div class="ug-modal__body">' +
+        '<dl class="ug-modal__facts">' +
+        '<div>' + icon("pin") + "<dt>District</dt><dd>" + esc(p.district) + "</dd></div>" +
+        '<div>' + icon("map") + "<dt>From Kampala</dt><dd>" + esc(p.driveFromKampala) + "</dd></div>" +
+        '<div>' + icon("calendar") + "<dt>Best time</dt><dd>" + esc(p.bestTime) + "</dd></div>" +
+        "</dl>" +
+        '<p class="ug-modal__about">' + esc(p.about) + "</p>" +
+        '<ul class="ug-tags" aria-label="Best for">' + (p.bestFor || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
+        '<div class="ug-modal__cols">' +
+        '<div class="ug-modal__block"><h3>Highlights</h3><ul class="icon-list">' + (p.highlights || []).map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul></div>" +
+        '<div class="ug-modal__block"><h3>Where to stay</h3><ul class="ug-modal__stay">' + (p.stayAt || []).map(function (s) { return "<li>" + icon("bed") + "<span>" + esc(s) + "</span></li>"; }).join("") + "</ul>" +
+        "<h3>Related safaris</h3>" +
+        (tours.length
+          ? '<ul class="ug-modal__tours">' + tours.map(function (t) {
+              return '<li><a href="tour.html?t=' + encodeURIComponent(t.slug) + '"><span>' + esc(t.title) + "</span><small>" + esc(t.days) + " days" + (money(t.priceFrom) ? " · from " + money(t.priceFrom) : "") + "</small></a></li>";
+            }).join("") + "</ul>"
+          : '<p class="ug-modal__none">Not in a set itinerary yet. We add it to tailor-made trips on request.</p>') +
+        "</div></div></div>" +
+        '<div class="ug-modal__foot">' +
+        '<a class="btn btn-primary" href="enquire.html?d=uganda">Plan a trip here <span class="arr">→</span></a>' +
+        '<div class="ug-modal__nav">' +
+        (prev ? '<button type="button" class="ug-modal__step" data-ug-goto="' + esc(prev.id) + '"><span aria-hidden="true">←</span> ' + esc(prev.short || prev.name) + "</button>" : "") +
+        (next ? '<button type="button" class="ug-modal__step" data-ug-goto="' + esc(next.id) + '">' + esc(next.short || next.name) + ' <span aria-hidden="true">→</span></button>' : "") +
+        "</div></div>";
+      dialog.scrollTop = 0;
+      current = p;
+    }
+    function focusables() {
+      return [].slice.call(dialog.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+        .filter(function (el) { return el.offsetParent !== null || el === document.activeElement; });
+    }
+    function open(id, from) {
+      var p = byId[id]; if (!p) return;
+      opener = from || document.activeElement;
+      render(p);
+      modal.hidden = false;
+      document.documentElement.classList.add("ug-lock");
+      inerted = [].slice.call(document.body.children).filter(function (el) { return el !== modal && !el.inert && el.tagName !== "SCRIPT"; });
+      inerted.forEach(function (el) { el.inert = true; });
+      requestAnimationFrame(function () { modal.classList.add("is-open"); });
+      dialog.focus({ preventScroll: true });
+    }
+    function close() {
+      if (modal.hidden) return;
+      modal.classList.remove("is-open");
+      modal.hidden = true;
+      document.documentElement.classList.remove("ug-lock");
+      inerted.forEach(function (el) { el.inert = false; });
+      inerted = [];
+      var back = current && document.querySelector('[data-ug-open="' + current.id + '"]');
+      // return focus to the card for the stop being shown (the user may have stepped through stops)
+      var target = back || opener;
+      if (target && target.focus) target.focus({ preventScroll: !!back && back !== opener });
+      if (back && back !== opener) back.closest(".ug-card").scrollIntoView({ block: "center" });
+      current = null;
+    }
+    section.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-ug-open]");
+      if (b) open(b.getAttribute("data-ug-open"), b);
+    });
+    // the whole card is clickable (the title button carries the accessible name)
+    section.addEventListener("click", function (e) {
+      if (e.target.closest("[data-ug-open], a, button")) return;
+      var card = e.target.closest(".ug-card");
+      if (card) { var b = card.querySelector("[data-ug-open]"); if (b) open(b.getAttribute("data-ug-open"), b); }
+    });
+    modal.addEventListener("click", function (e) {
+      if (e.target.closest("[data-ug-close]")) { close(); return; }
+      var g = e.target.closest("[data-ug-goto]");
+      if (g) { render(byId[g.getAttribute("data-ug-goto")]); dialog.focus({ preventScroll: true }); }
+    });
+    modal.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key !== "Tab") return;
+      var f = focusables(); if (!f.length) { e.preventDefault(); return; }
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog)) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    // keep focus inside if it escapes (e.g. clicking the backdrop area)
+    document.addEventListener("focusin", function (e) {
+      if (!modal.hidden && !modal.contains(e.target)) dialog.focus({ preventScroll: true });
+    });
+  }
 })();
